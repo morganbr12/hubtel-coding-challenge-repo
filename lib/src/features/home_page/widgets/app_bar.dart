@@ -7,36 +7,41 @@ class TopSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.83,
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.grey.shade600,
-            borderRadius: BorderRadius.circular(10),
+    return Container(
+      width: double.maxFinite,
+      // height: double.infinity,
+      decoration: const BoxDecoration(color: Colors.white),
+      child: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.83,
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade600,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SelectTypeButton(
+                  selectedType: SelectedType.history,
+                ),
+                SelectTypeButton(
+                  selectedType: SelectedType.transaction,
+                ),
+              ],
+            ),
           ),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SelectTypeButton(
-                selectedType: SelectedType.history,
-              ),
-              SelectTypeButton(
-                selectedType: SelectedType.transaction,
-              ),
-            ],
+          const SizedBox(
+            height: 30,
           ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        const Divider(
-          height: 2,
-          indent: 0,
-          endIndent: 0,
-        )
-      ],
+          const Divider(
+            height: 2,
+            indent: 0,
+            endIndent: 0,
+          )
+        ],
+      ),
     );
   }
 }
