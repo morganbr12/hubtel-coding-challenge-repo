@@ -1,0 +1,4 @@
+enum SelectedType {
+  history,
+  transaction,
+}
