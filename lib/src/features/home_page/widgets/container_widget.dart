@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/models/history_data.dart';
+
 class ContainerWidget extends StatelessWidget {
   const ContainerWidget({
     super.key,
+    required this.historyData,
   });
+
+  final HistoryData historyData;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +37,9 @@ class ContainerWidget extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 30,
+                    child: Image.network(historyData.transImg ?? ''),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -45,11 +51,11 @@ class ContainerWidget extends StatelessWidget {
                           children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.36,
-                              child: const Text(
-                                'Emmanuel Rockson Kwabena Uncle Ebo',
+                              child: Text(
+                                historyData.customerName ?? "",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 12,
                                 ),
@@ -60,9 +66,11 @@ class ContainerWidget extends StatelessWidget {
                               padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
-                                color: Colors.lightGreen.withOpacity(0.3),
+                                color: historyData.isSuccess == true
+                                    ? Colors.lightGreen.withOpacity(0.3)
+                                    : Colors.red.withOpacity(0.3),
                               ),
-                              child: const Row(
+                              child: Row(
                                 children: [
                                   CircleAvatar(
                                     radius: 10,
@@ -70,13 +78,20 @@ class ContainerWidget extends StatelessWidget {
                                     child: Icon(
                                       Icons.check,
                                       size: 10,
+                                      color: historyData.isSuccess == true
+                                          ? Colors.white
+                                          : Colors.red,
                                     ),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Text(
-                                    'Successful',
+                                    historyData.isSuccess == true
+                                        ? 'Successful'
+                                        : "Failed",
                                     style: TextStyle(
-                                      color: Colors.lightGreen,
+                                      color: historyData.isSuccess == true
+                                          ? Colors.lightGreen
+                                          : Colors.red,
                                     ),
                                   )
                                 ],
@@ -85,19 +100,19 @@ class ContainerWidget extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '024 123 4567',
-                              style: TextStyle(
+                              historyData.phoneNumber ?? "",
+                              style: const TextStyle(
                                 color: Colors.black,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Text(
-                              'GHS 500',
-                              style: TextStyle(
+                              'GHS ${historyData.amount}',
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -120,6 +135,7 @@ class ContainerWidget extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 20,
+                        child: Icon(Icons.person),
                       ),
                       SizedBox(width: 10),
                       Text(
