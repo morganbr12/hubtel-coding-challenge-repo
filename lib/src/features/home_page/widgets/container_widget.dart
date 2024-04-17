@@ -39,7 +39,10 @@ class ContainerWidget extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    child: Image.network(historyData.transImg ?? ''),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(historyData.transImg ?? ''),
+                    ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -74,13 +77,16 @@ class ContainerWidget extends StatelessWidget {
                                 children: [
                                   CircleAvatar(
                                     radius: 10,
-                                    backgroundColor: Colors.lightGreen,
+                                    backgroundColor:
+                                        historyData.isSuccess == true
+                                            ? Colors.lightGreen
+                                            : Colors.red,
                                     child: Icon(
-                                      Icons.check,
+                                      historyData.isSuccess == true
+                                          ? Icons.check
+                                          : Icons.close,
                                       size: 10,
-                                      color: historyData.isSuccess == true
-                                          ? Colors.white
-                                          : Colors.red,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   const SizedBox(width: 10),

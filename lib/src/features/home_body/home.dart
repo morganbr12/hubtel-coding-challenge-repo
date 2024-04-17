@@ -20,7 +20,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   final _bodyElement = <Widget>[
+    Container(),
+    Container(),
     homeOutlet(),
+    Container(),
   ];
 
   @override

@@ -26,10 +26,43 @@ class _MyHomeState extends State<MyHome> {
             children: [
               const SizedBox(height: 30),
               const TopSelector(),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 20, right: 20),
-              //   child: TextFormField(),
-              // ),
+              const SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.75,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          fillColor: Colors.blueGrey.withOpacity(0.3),
+                          filled: true,
+                          hintText: 'Search',
+                          prefixIcon: const Icon(Icons.search),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 10),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.blueGrey.withOpacity(0.3),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.blueGrey.withOpacity(0.3),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Icon(
+                      Icons.menu,
+                      size: 50,
+                    )
+                  ],
+                ),
+              ),
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
